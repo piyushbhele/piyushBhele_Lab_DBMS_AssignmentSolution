@@ -140,8 +140,9 @@ select min(s.supp_price) Least_expensive ,p.*,c.cat_name from supplier_pricing s
 on s.prod_id = p.prod_id join catagory c on p.cat_id = c.cat_id group by c.cat_id;
 
 #7
-select p.prod_id,p.prod_name,co.ord_date from product p 
-join cust_order co where co.ord_date > '2021-10-05';
+select p.prod_id,p.prod_name,co.ord_date from cust_order co 
+join supplier_pricing sp on co.pricing_id = sp.pricing_id
+join product p on sp.prod_id = p.prod_id where co.ord_date > '2021-10-05';
 
 #8
 select cust_name,cust_gender from customer where cust_name like '%A%';
